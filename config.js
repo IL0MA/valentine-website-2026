@@ -82,47 +82,47 @@ const CONFIG = {
         startText: "🎵 Play Music",        // Button text to start music
         stopText: "🔇 Stop Music",         // Button text to stop music
         volume: 0.5                        // Volume level (0.0 to 1.0)
+    },
+
+    reactionImages: {
+    enabled: true,
+    sizePx: 180,
+    offsetX: 16,
+    offsetY: -40,
+    fadeMs: 180,
+
+    byButtonId: {
+        // If YES should show ANIMALS:
+        yesBtn1: [
+            "./assets/yes_1.jpg",
+            "./assets/yes_2.jpg",
+            "./assets/yes_3.jpg",
+            "./assets/yes_4.jpg",
+            "./assets/yes_5.jpg",
+            "./assets/yes_6.jpg"
+        ],
+
+        // If NO should show FOODS:
+        noBtn1: [
+            "./assets/no_1.jpg",
+            "./assets/no_2.jpg",
+            "./assets/no_3.jpg",
+            "./assets/no_4.png",
+            "./assets/no_5.png",
+            "./assets/no_6.png"
+        ],
+
+        // Question 3 NO button can reuse the same NO pool:
+        noBtn3: [
+            "./assets/no_1.jpg",
+            "./assets/no_2.jpg",
+            "./assets/no_3.jpg",
+            "./assets/no_4.png",
+            "./assets/no_5.png",
+            "./assets/no_6.png"
+        ]
     }
-
-//     reactionImages: {
-//     enabled: true,
-//     sizePx: 180,
-//     offsetX: 16,
-//     offsetY: -40,
-//     fadeMs: 180,
-
-//     byButtonId: {
-//         // If YES should show ANIMALS:
-//         yesBtn1: [
-//             "./assets/yes_1.jpg",
-//             "./assets/yes_2.jpg",
-//             "./assets/yes_3.jpg",
-//             "./assets/yes_4.jpg",
-//             "./assets/yes_5.jpg",
-//             "./assets/yes_6.jpg"
-//         ],
-
-//         // If NO should show FOODS:
-//         noBtn1: [
-//             "./assets/no_1.jpg",
-//             "./assets/no_2.jpg",
-//             "./assets/no_3.jpg",
-//             "./assets/no_4.png",
-//             "./assets/no_5.png",
-//             "./assets/no_6.png"
-//         ],
-
-//         // Question 3 NO button can reuse the same NO pool:
-//         noBtn3: [
-//             "./assets/no_1.jpg",
-//             "./assets/no_2.jpg",
-//             "./assets/no_3.jpg",
-//             "./assets/no_4.png",
-//             "./assets/no_5.png",
-//             "./assets/no_6.png"
-//         ]
-//     },
-// },
+}
 
 };
 

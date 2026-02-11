@@ -121,7 +121,7 @@ const CONFIG = {
             "./assets/no_5.png",
             "./assets/no_6.png"
         ]
-    }
+    },
 },
 
 };

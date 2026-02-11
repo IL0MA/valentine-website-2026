@@ -319,7 +319,7 @@ h2 {
 
 
 /* Reaction image popup (does not block clicks) */
-/* .reaction-layer {
+.reaction-layer {
     position: fixed;
     inset: 0;
     pointer-events: none; /* IMPORTANT: buttons stay clickable */
@@ -338,4 +338,4 @@ h2 {
 .reaction-layer.show img {
     opacity: 1;
     transform: scale(1);
-} */
+}

@@ -2,74 +2,74 @@
 const config = window.VALENTINE_CONFIG;
 
 //-----
-//   let hideReactionTimeout = null;
+  let hideReactionTimeout = null;
 
-// function hideReactionImage() {
-//     const layer = document.getElementById('reactionLayer');
-//     if (!layer) return;
+function hideReactionImage() {
+    const layer = document.getElementById('reactionLayer');
+    if (!layer) return;
 
-//     layer.classList.remove('show');
+    layer.classList.remove('show');
 
-//     // Avoid stacking timeouts
-//     if (hideReactionTimeout) clearTimeout(hideReactionTimeout);
+    // Avoid stacking timeouts
+    if (hideReactionTimeout) clearTimeout(hideReactionTimeout);
 
-//     const fadeMs = (config.reactionImages && config.reactionImages.fadeMs) || 180;
-//     hideReactionTimeout = setTimeout(() => {
-//         layer.classList.add('hidden');
-//     }, fadeMs);
-// }
+    const fadeMs = (config.reactionImages && config.reactionImages.fadeMs) || 180;
+    hideReactionTimeout = setTimeout(() => {
+        layer.classList.add('hidden');
+    }, fadeMs);
+}
 
-// function showReactionImage(buttonId, anchorEl) {
-//     const settings = config.reactionImages;
-//     if (!settings || !settings.enabled) return;
+function showReactionImage(buttonId, anchorEl) {
+    const settings = config.reactionImages;
+    if (!settings || !settings.enabled) return;
 
-//     const pool = settings.byButtonId && settings.byButtonId[buttonId];
-//     if (!pool || pool.length === 0) return;
+    const pool = settings.byButtonId && settings.byButtonId[buttonId];
+    if (!pool || pool.length === 0) return;
 
-//     const layer = document.getElementById('reactionLayer');
-//     const img = document.getElementById('reactionImg');
-//     if (!layer || !img) return;
+    const layer = document.getElementById('reactionLayer');
+    const img = document.getElementById('reactionImg');
+    if (!layer || !img) return;
 
-//     // Pick random image
-//     const url = pool[Math.floor(Math.random() * pool.length)];
+    // Pick random image
+    const url = pool[Math.floor(Math.random() * pool.length)];
 
-//     // Size
-//     const size = settings.sizePx || 180;
-//     img.style.width = `${size}px`;
+    // Size
+    const size = settings.sizePx || 180;
+    img.style.width = `${size}px`;
 
-//     // Position near the clicked button
-//     const rect = anchorEl.getBoundingClientRect();
-//     let left = rect.right + (settings.offsetX ?? 16);
-//     let top = rect.top + (settings.offsetY ?? -40);
+    // Position near the clicked button
+    const rect = anchorEl.getBoundingClientRect();
+    let left = rect.right + (settings.offsetX ?? 16);
+    let top = rect.top + (settings.offsetY ?? -40);
 
-//     // If it would go off the right edge, flip to the left side of the button
-//     const padding = 12;
-//     if (left + size > window.innerWidth - padding) {
-//         left = rect.left - size - (settings.offsetX ?? 16);
-//     }
+    // If it would go off the right edge, flip to the left side of the button
+    const padding = 12;
+    if (left + size > window.innerWidth - padding) {
+        left = rect.left - size - (settings.offsetX ?? 16);
+    }
 
-//     // Clamp to viewport
-//     left = Math.max(padding, Math.min(left, window.innerWidth - size - padding));
-//     top = Math.max(padding, Math.min(top, window.innerHeight - size - padding));
+    // Clamp to viewport
+    left = Math.max(padding, Math.min(left, window.innerWidth - size - padding));
+    top = Math.max(padding, Math.min(top, window.innerHeight - size - padding));
 
-//     img.style.left = `${left}px`;
-//     img.style.top = `${top}px`;
+    img.style.left = `${left}px`;
+    img.style.top = `${top}px`;
 
-//     // If image fails to load, hide it instead of showing a broken icon
-//     img.onerror = () => {
-//         console.warn(`Reaction image failed to load: ${url}`);
-//         hideReactionImage();
-//     };
+    // If image fails to load, hide it instead of showing a broken icon
+    img.onerror = () => {
+        console.warn(`Reaction image failed to load: ${url}`);
+        hideReactionImage();
+    };
 
-//     // Show new image (replaces old one)
-//     layer.classList.remove('hidden');
-//     img.src = url;
+    // Show new image (replaces old one)
+    layer.classList.remove('hidden');
+    img.src = url;
 
-//     // Force reflow so animation always triggers when swapping images quickly
-//     void img.offsetHeight;
+    // Force reflow so animation always triggers when swapping images quickly
+    void img.offsetHeight;
 
-//     layer.classList.add('show');
-// }
+    layer.classList.add('show');
+}
 //----  
 
 // Validate configuration
@@ -187,6 +187,7 @@ function setRandomPosition(element) {
 
 // Function to show next question
 function showNextQuestion(questionNumber) {
+    hideReactionImage();
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
     document.getElementById(`question${questionNumber}`).classList.remove('hidden');
 }
@@ -199,6 +200,8 @@ function moveButton(button) {
     button.style.position = 'fixed';
     button.style.left = x + 'px';
     button.style.top = y + 'px';
+    
+    requestAnimationFrame(() => showReactionImage(button.id, button));
 }
 
 
@@ -248,7 +251,7 @@ window.addEventListener('load', setInitialPosition);
 
 // Celebration function
 function celebrate() {
-    // hideReactionImage();
+    hideReactionImage();
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
     const celebration = document.getElementById('celebration');
     celebration.classList.remove('hidden');
